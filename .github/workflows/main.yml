@@ -14,6 +14,6 @@ jobs:
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: blossom.ge
-          username: giorgi
+          username: giorgi@blossom.ge
           password: gbC#252712
           server-dir: /
