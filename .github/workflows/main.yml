@@ -1,0 +1,19 @@
+name: Easy cPanel Deploy (FTP)
+
+on:
+  push:
+    branches: ["main"]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Upload to cPanel via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: blossom.ge
+          username: giorgi
+          password: gbC#252712
+          server-dir: /
