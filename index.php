@@ -53,16 +53,28 @@ $year = date('Y');
     <section id="socials" class="container section socials">
       <h2 class="section-title">Follow Us</h2>
       <div class="social-grid">
-        <a class="social-card facebook" href="https://www.facebook.com/" target="_blank" rel="noopener">Facebook
-          <div class="social-handle">/BlossomFlowers</div>
+        <a class="social-card facebook" href="https://www.facebook.com/" target="_blank" rel="noopener">
+          <span class="icon">
+            <!-- Facebook SVG -->
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#1877F2" d="M22 12a10 10 0 10-11.5 9.9v-7H8.9v-3h1.6V9.5c0-1.6.95-2.5 2.4-2.5.7 0 1.4.05 2 .1v2.3h-1.1c-.9 0-1.2.6-1.2 1.2v1.5h2.2l-.35 3h-1.85v7A10 10 0 0022 12z"/></svg>
+          </span>
+          <span class="social-body">Facebook<div class="social-handle">/BlossomFlowers</div></span>
         </a>
 
-        <a class="social-card tiktok" href="https://www.tiktok.com/" target="_blank" rel="noopener">TikTok
-          <div class="social-handle">@blossom_flowers</div>
+        <a class="social-card tiktok" href="https://www.tiktok.com/" target="_blank" rel="noopener">
+          <span class="icon">
+            <!-- TikTok SVG -->
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#000" d="M12 2v8.2A4.8 4.8 0 0014.8 15c2.65 0 4.8-2.15 4.8-4.8V8.5h1.9A7.7 7.7 0 0112 21.7 7.7 7.7 0 014.3 14 7.7 7.7 0 0112 6.3V2z"/></svg>
+          </span>
+          <span class="social-body">TikTok<div class="social-handle">@blossom_flowers</div></span>
         </a>
 
-        <a class="social-card instagram" href="https://www.instagram.com/" target="_blank" rel="noopener">Instagram
-          <div class="social-handle">@blossom_flowers</div>
+        <a class="social-card instagram" href="https://www.instagram.com/" target="_blank" rel="noopener">
+          <span class="icon">
+            <!-- Instagram SVG -->
+            <svg viewBox="0 0 24 24" aria-hidden="true"><linearGradient id="g" x1="0" x2="1"><stop offset="0" stop-color="#f58529"/><stop offset="0.5" stop-color="#dd2a7b"/><stop offset="1" stop-color="#8134af"/></linearGradient><path fill="url(#g)" d="M7 2h10a5 5 0 015 5v10a5 5 0 01-5 5H7a5 5 0 01-5-5V7a5 5 0 015-5zm5 6.4A4.6 4.6 0 1016.6 13 4.6 4.6 0 0012 8.4zm6.8-3.9a1.1 1.1 0 11-1.1-1.1 1.1 1.1 0 011.1 1.1z"/></svg>
+          </span>
+          <span class="social-body">Instagram<div class="social-handle">@blossom_flowers</div></span>
         </a>
       </div>
     </section>
