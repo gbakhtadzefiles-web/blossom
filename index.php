@@ -15,7 +15,7 @@ $year = date('Y');
     <div class="container header-inner">
       <div class="logo">Blossom</div>
       <nav class="nav">
-        <a href="#shop">Shop</a>
+        <a href="#socials">Socials</a>
         <a href="#about">About</a>
         <a href="#contact" class="btn-outline">Contact</a>
       </nav>
@@ -41,32 +41,29 @@ $year = date('Y');
       </div>
     </section>
 
-    <section id="shop" class="container section shop">
-      <h2 class="section-title">Featured Bouquets</h2>
-      <div class="grid">
-        <article class="card">
-          <div class="card-media">💐</div>
-          <h3>Spring Bliss</h3>
-          <p class="price">$39</p>
-          <p class="muted">Roses, tulips & seasonal greens — bright and cheerful.</p>
-          <p><a class="btn-primary" href="hello.php">Add to Cart</a></p>
-        </article>
+    <section class="container section video">
+      <div class="section-inner">
+        <h2 class="section-title">Watch Our Arrangement Demo</h2>
+        <div class="video-wrapper">
+          <iframe src="https://www.youtube.com/embed/fSKQRDq3RkM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+      </div>
+    </section>
 
-        <article class="card">
-          <div class="card-media">🌷</div>
-          <h3>Pink Delight</h3>
-          <p class="price">$45</p>
-          <p class="muted">Blush roses and peonies for a romantic touch.</p>
-          <p><a class="btn-primary" href="hello.php">Add to Cart</a></p>
-        </article>
+    <section id="socials" class="container section socials">
+      <h2 class="section-title">Follow Us</h2>
+      <div class="social-grid">
+        <a class="social-card facebook" href="https://www.facebook.com/" target="_blank" rel="noopener">Facebook
+          <div class="social-handle">/BlossomFlowers</div>
+        </a>
 
-        <article class="card">
-          <div class="card-media">🌻</div>
-          <h3>Sunny Day</h3>
-          <p class="price">$34</p>
-          <p class="muted">Sunflowers & daisies — perfect for cheering someone up.</p>
-          <p><a class="btn-primary" href="hello.php">Add to Cart</a></p>
-        </article>
+        <a class="social-card tiktok" href="https://www.tiktok.com/" target="_blank" rel="noopener">TikTok
+          <div class="social-handle">@blossom_flowers</div>
+        </a>
+
+        <a class="social-card instagram" href="https://www.instagram.com/" target="_blank" rel="noopener">Instagram
+          <div class="social-handle">@blossom_flowers</div>
+        </a>
       </div>
     </section>
 
