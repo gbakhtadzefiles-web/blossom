@@ -1,14 +1,7 @@
 <?php
 /**
- * gallery.php — 4x3 grid + LIGHTBOX (popup) with:
- * - Uniform thumbnails (same size/shape)
- * - Captions under thumbnails
- * - Popup caption + counter + Prev/Next buttons
- * - FIXED keyboard: ESC closes, ←/→ navigate (reliable)
- * - FIXED close button: always closes (no next)
- *
- * Usage in index.php:
- *   <?php include __DIR__ . '/gallery.php'; ?>
+ * gallery.php — 4x3 thumbnails + Lightbox popup (Prev/Next + counter + captions)
+ * IMPORTANT: This file must contain ONLY gallery markup + CSS + JS (no index.php code).
  */
 
 $items = [
@@ -39,13 +32,12 @@ $items = [
   ["url"=>"https://i.imgur.com/sYtBxnG.jpeg", "title"=>"Bouquet 25 — Amaryllis Special"],
 ];
 
-// show 12 thumbs in grid; lightbox includes ALL
-$thumbs = array_slice($items, 0, 12);
+$thumbs = array_slice($items, 0, 12); // 4 cols x 3 rows
 $total  = count($items);
 ?>
 
 <style>
-/* ===== Grid layout (4 cols x 3 rows) ===== */
+/* Grid */
 #gallery .am-gallery-grid{
   display:grid !important;
   grid-template-columns:repeat(4, minmax(0, 1fr)) !important;
@@ -61,17 +53,16 @@ $total  = count($items);
 #gallery .am-gallery-item{
   display:block !important;
   width:100% !important;
-  height:140px !important;          /* fixed height -> same size */
+  height:140px !important;
   overflow:hidden !important;
   cursor:zoom-in !important;
 }
 #gallery .am-gallery-item img{
   width:100% !important;
   height:100% !important;
-  object-fit:cover !important;       /* crop to same shape */
+  object-fit:cover !important;
   object-position:center !important;
   display:block !important;
-  transform:scale(1) !important;
   transition:transform .25s ease !important;
 }
 #gallery .am-gallery-item:hover img{ transform:scale(1.05) !important; }
@@ -82,13 +73,10 @@ $total  = count($items);
   font-weight:800 !important;
   color: rgba(18,32,38,.80) !important;
   font-size:13px !important;
-  line-height:1.2 !important;
   white-space:nowrap !important;
   overflow:hidden !important;
   text-overflow:ellipsis !important;
 }
-
-/* responsive */
 @media (max-width: 980px){
   #gallery .am-gallery-grid{ grid-template-columns:repeat(3, minmax(0,1fr)) !important; }
   #gallery .am-gallery-item{ height:130px !important; }
@@ -98,127 +86,45 @@ $total  = count($items);
   #gallery .am-gallery-item{ height:120px !important; }
 }
 
-/* ===== Lightbox ===== */
-.am-lightbox{
-  position:fixed;
-  inset:0;
-  z-index:9999;
-  display:none;
-}
-.am-lightbox.is-open{ display:block; }
-.am-lightbox .backdrop{
-  position:absolute;
-  inset:0;
-  background: rgba(10,18,28,.72);
-  backdrop-filter: blur(6px);
-}
+/* Lightbox */
+.am-lightbox{position:fixed; inset:0; z-index:9999; display:none;}
+.am-lightbox.is-open{display:block;}
+.am-lightbox .backdrop{position:absolute; inset:0; background:rgba(10,18,28,.72); backdrop-filter:blur(6px);}
 .am-lightbox .panel{
-  position:relative;
-  max-width: 980px;
-  width: calc(100% - 28px);
-  margin: 5vh auto;
-  background: rgba(255,255,255,.92);
-  border:1px solid rgba(255,255,255,.35);
-  border-radius: 18px;
-  overflow:hidden;
-  box-shadow: 0 26px 90px rgba(0,0,0,.30);
+  position:relative; max-width:980px; width:calc(100% - 28px);
+  margin:5vh auto; background:rgba(255,255,255,.92);
+  border:1px solid rgba(255,255,255,.35); border-radius:18px; overflow:hidden;
+  box-shadow:0 26px 90px rgba(0,0,0,.30);
 }
 .am-lightbox .stage{
-  background:#111;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  height: min(70vh, 640px);
-  position:relative;
+  background:#111; display:flex; align-items:center; justify-content:center;
+  height:min(70vh, 640px); position:relative;
 }
-.am-lightbox .stage img{
-  max-width:100%;
-  max-height:100%;
-  object-fit:contain;
-  display:block;
-}
+.am-lightbox .stage img{max-width:100%; max-height:100%; object-fit:contain; display:block;}
 .am-lightbox .img-title{
-  padding:12px 14px;
-  background: rgba(255,255,255,.92);
-  border-top: 1px solid rgba(16,24,40,.10);
-  font-weight:900;
-  color: rgba(18,32,38,.85);
+  padding:12px 14px; background:rgba(255,255,255,.92);
+  border-top:1px solid rgba(16,24,40,.10); font-weight:900; color:rgba(18,32,38,.85);
 }
-
 .am-lightbox .bar{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:10px;
-  padding:12px 12px;
-  border-top: 1px solid rgba(16,24,40,.10);
-  background: rgba(255,255,255,.92);
+  display:flex; align-items:center; justify-content:space-between; gap:10px;
+  padding:12px; border-top:1px solid rgba(16,24,40,.10); background:rgba(255,255,255,.92);
 }
 .am-lightbox .counter{
-  font-weight:800;
-  color: rgba(18,32,38,.75);
-  padding:8px 10px;
-  border-radius: 999px;
-  border:1px solid rgba(16,24,40,.10);
-  background: rgba(16,24,40,.02);
-  white-space:nowrap;
+  font-weight:800; color:rgba(18,32,38,.75); padding:8px 10px; border-radius:999px;
+  border:1px solid rgba(16,24,40,.10); background:rgba(16,24,40,.02);
 }
-.am-lightbox .controls{
-  display:flex;
-  gap:8px;
-  align-items:center;
-}
+.am-lightbox .controls{display:flex; gap:8px; align-items:center;}
 .am-lightbox button{
-  border:1px solid rgba(16,24,40,.12);
-  background: rgba(255,255,255,.90);
-  padding:10px 12px;
-  border-radius: 12px;
-  font-weight:800;
-  cursor:pointer;
+  border:1px solid rgba(16,24,40,.12); background:rgba(255,255,255,.90);
+  padding:10px 12px; border-radius:12px; font-weight:800; cursor:pointer;
 }
-.am-lightbox button:hover{ transform: translateY(-1px); }
-.am-lightbox button:active{ transform: translateY(0); }
-
-.am-lightbox .close{
-  position:absolute;
-  top:10px;
-  right:10px;
-  border-radius: 999px;
-  padding:8px 10px;
-  z-index: 6;
-}
-.am-lightbox .navSide{
-  position:absolute;
-  top:0; bottom:0;
-  width:18%;
-  min-width:80px;
-  background: transparent;
-  border:0;
-  cursor:pointer;
-  z-index: 5;
-}
-.am-lightbox .navPrev{ left:0; }
-.am-lightbox .navNext{ right:0; }
-
+.am-lightbox .close{position:absolute; top:10px; right:10px; border-radius:999px; padding:8px 10px; z-index:6;}
+.am-lightbox .navSide{position:absolute; top:0; bottom:0; width:18%; min-width:80px; background:transparent; border:0; cursor:pointer; z-index:5;}
+.am-lightbox .navPrev{left:0;} .am-lightbox .navNext{right:0;}
 .am-lightbox .hint{
-  position:absolute;
-  bottom:10px;
-  left:50%;
-  transform:translateX(-50%);
-  color: rgba(255,255,255,.75);
-  font-size:12px;
-  font-weight:700;
-  background: rgba(0,0,0,.25);
-  padding:6px 10px;
-  border-radius: 999px;
-  user-select:none;
-  z-index: 4;
-}
-
-@media (max-width: 520px){
-  .am-lightbox .stage{ height: 58vh; }
-  .am-lightbox .counter{ font-size:13px; }
-  .am-lightbox button{ padding:10px; }
+  position:absolute; bottom:10px; left:50%; transform:translateX(-50%);
+  color:rgba(255,255,255,.75); font-size:12px; font-weight:700;
+  background:rgba(0,0,0,.25); padding:6px 10px; border-radius:999px; user-select:none; z-index:4;
 }
 </style>
 
@@ -232,7 +138,7 @@ $total  = count($items);
     <div class="am-gallery-grid">
       <?php foreach ($thumbs as $i => $it): ?>
         <div class="am-gallery-card">
-          <a class="am-gallery-item" href="#" data-index="<?= $i ?>" aria-label="Open <?= htmlspecialchars($it['title']) ?>">
+          <a class="am-gallery-item" href="#" data-index="<?= $i ?>">
             <img src="<?= htmlspecialchars($it['url']) ?>" alt="<?= htmlspecialchars($it['title']) ?>" loading="lazy" decoding="async" referrerpolicy="no-referrer" />
           </a>
           <div class="am-caption"><?= htmlspecialchars($it['title']) ?></div>
@@ -242,21 +148,20 @@ $total  = count($items);
   </div>
 </section>
 
-<!-- Lightbox (tabindex for focus -> keyboard works reliably) -->
 <div class="am-lightbox" id="amLightbox" aria-hidden="true" tabindex="-1">
   <div class="backdrop" data-close="1"></div>
 
-  <div class="panel" role="dialog" aria-modal="true" aria-label="Image viewer">
+  <div class="panel" role="dialog" aria-modal="true">
     <button class="close" type="button" data-close="1" aria-label="Close">✕</button>
 
     <div class="stage">
       <button class="navSide navPrev" type="button" data-prev="1" aria-label="Previous"></button>
-      <img id="amLightboxImg" alt="Selected bouquet">
+      <img id="amLightboxImg" alt="">
       <button class="navSide navNext" type="button" data-next="1" aria-label="Next"></button>
       <div class="hint">Use ← → keys • Esc to close</div>
     </div>
 
-    <div class="img-title" id="amTitle">Title</div>
+    <div class="img-title" id="amTitle"></div>
 
     <div class="bar">
       <div class="counter" id="amCounter">1 / <?= $total ?></div>
@@ -272,17 +177,18 @@ $total  = count($items);
 (() => {
   const ITEMS = <?php echo json_encode(array_values($items), JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE); ?>;
 
-  const lb        = document.getElementById('amLightbox');
-  const imgEl     = document.getElementById('amLightboxImg');
+  const lb = document.getElementById('amLightbox');
+  const imgEl = document.getElementById('amLightboxImg');
+  const titleEl = document.getElementById('amTitle');
   const counterEl = document.getElementById('amCounter');
-  const titleEl   = document.getElementById('amTitle');
-  const panelEl   = lb.querySelector('.panel');
+  const panelEl = lb.querySelector('.panel');
 
   let index = 0;
 
   function render(){
     const item = ITEMS[index];
     imgEl.src = item.url;
+    imgEl.alt = item.title;
     titleEl.textContent = item.title;
     counterEl.textContent = (index + 1) + " / " + ITEMS.length;
   }
@@ -290,14 +196,10 @@ $total  = count($items);
   function openAt(i){
     index = (i + ITEMS.length) % ITEMS.length;
     render();
-
     lb.classList.add('is-open');
     lb.setAttribute('aria-hidden', 'false');
-
     document.documentElement.style.overflow = 'hidden';
     document.body.style.overflow = 'hidden';
-
-    // ensure keyboard events work
     lb.focus();
   }
 
@@ -305,7 +207,6 @@ $total  = count($items);
     lb.classList.remove('is-open');
     lb.setAttribute('aria-hidden', 'true');
     imgEl.removeAttribute('src');
-
     document.documentElement.style.overflow = '';
     document.body.style.overflow = '';
   }
@@ -313,20 +214,19 @@ $total  = count($items);
   function next(){ index = (index + 1) % ITEMS.length; render(); }
   function prev(){ index = (index - 1 + ITEMS.length) % ITEMS.length; render(); }
 
-  // prevent clicks inside panel from bubbling to backdrop handlers
+  // Stop clicks inside panel from closing the popup
   panelEl.addEventListener('click', (e) => e.stopPropagation());
 
-  // Open on thumbnail click
+  // Open from thumbnails (event delegation)
   document.addEventListener('click', (e) => {
-    const thumb = e.target.closest('.am-gallery-item');
-    if (thumb){
-      e.preventDefault();
-      const i = parseInt(thumb.getAttribute('data-index') || '0', 10);
-      openAt(i);
-    }
+    const thumb = e.target.closest('#gallery .am-gallery-item');
+    if (!thumb) return;
+    e.preventDefault();
+    const i = parseInt(thumb.getAttribute('data-index') || '0', 10);
+    openAt(i);
   });
 
-  // Lightbox click controls
+  // Lightbox controls
   lb.addEventListener('click', (e) => {
     if (!lb.classList.contains('is-open')) return;
 
@@ -338,28 +238,13 @@ $total  = count($items);
     if (e.target.closest('[data-prev="1"]')) { prev(); return; }
   });
 
-  // Keyboard controls (reliable): window + capture
-  function onKey(e){
+  // Keyboard (reliable): window + capture
+  window.addEventListener('keydown', (e) => {
     if (!lb.classList.contains('is-open')) return;
 
-    const k = e.key || e.code;
-
-    if (k === 'Escape' || k === 'Esc') {
-      e.preventDefault();
-      close();
-      return;
-    }
-    if (k === 'ArrowRight' || k === 'Right') {
-      e.preventDefault();
-      next();
-      return;
-    }
-    if (k === 'ArrowLeft' || k === 'Left') {
-      e.preventDefault();
-      prev();
-      return;
-    }
-  }
-  window.addEventListener('keydown', onKey, true);
+    if (e.key === 'Escape') { e.preventDefault(); close(); }
+    else if (e.key === 'ArrowRight') { e.preventDefault(); next(); }
+    else if (e.key === 'ArrowLeft') { e.preventDefault(); prev(); }
+  }, true);
 })();
 </script>
