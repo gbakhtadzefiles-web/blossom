@@ -122,28 +122,7 @@ $thumbs = array_slice($images, 0, 12); // 12 thumbnails (3 rows x 4 cols)
     </div>
   </div>
 </section>
-<section id="gallery" class="section alt">
-  <div class="container">
-    <div class="section-head">
-      <h2>Picture Gallery</h2>
-      <p>12 selected bouquets (uniform thumbnails).</p>
-    </div>
-
-    <div class="gallery-grid">
-      <?php foreach ($thumbs as $i => $img): ?>
-        <a class="gallery-item" href="<?= htmlspecialchars($img) ?>" target="_blank" rel="noopener">
-          <img
-            src="<?= htmlspecialchars($img) ?>"
-            alt="Bouquet <?= $i + 1 ?>"
-            loading="lazy"
-            decoding="async"
-            referrerpolicy="no-referrer"
-          />
-        </a>
-      <?php endforeach; ?>
-    </div>
-  </div>
-</section>
+<?php include 'gallery.php'; ?>
 
 <section id="video" class="section">
   <div class="container">
