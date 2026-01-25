@@ -39,14 +39,14 @@ $thumbs = array_slice($images, 0, 12); // 12 thumbnails (3 rows x 4 cols)
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Amaryllis — Flower Boutique</title>
-  <link rel="stylesheet" href="assets/css/styles.css" />
+  <link rel="stylesheet" href="assets/styles.css" />
 </head>
 <body class="t1">
 
 <header class="site-header">
   <div class="container header-inner">
     <a class="brand" href="#">
-      <img src="assets/img/logo.png" alt="Amaryllis Logo" class="logo" />
+      <img src="assets/logo.png" alt="Amaryllis Logo" class="logo" />
       <span class="brand-text">
         <strong>Amaryllis</strong>
         <small>Flower Boutique</small>
