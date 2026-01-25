@@ -1,97 +1,111 @@
 ﻿<?php
-// Template 2: Crisp Minimal
+// Template 3: Gradient Glass
 ?>
 <!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Amaryllis — Flowers & Gifts</title>
+  <title>Amaryllis — Flowers</title>
   <link rel="stylesheet" href="assets/styles.css" />
 </head>
-<body class="t2">
+<body class="t3">
 
 <header class="site-header">
   <div class="container header-inner">
     <a class="brand" href="#">
       <img src="assets/Logo.png" alt="Amaryllis Logo" class="logo" />
-      <span class="brand-name">Amaryllis</span>
+      <div class="brand-stack">
+        <span class="name">Amaryllis</span>
+        <span class="tag">Bright • Minimal • Fresh</span>
+      </div>
     </a>
+
     <nav class="nav">
       <a href="#about">About</a>
       <a href="#gallery">Gallery</a>
       <a href="#video">Video</a>
       <a href="#visit">Map</a>
-      <a class="chip" href="#contact">Contact</a>
+      <a href="#contact" class="pill">Contact</a>
     </nav>
   </div>
 </header>
 
 <section class="hero">
-  <div class="container hero-inner">
-    <div>
-      <p class="kicker">FLOWER BOUTIQUE</p>
-      <h1>Minimal bouquets.<br/>Maximum joy.</h1>
-      <p class="lead">Clean design, bright colors, and fast service for gifts and events.</p>
-      <div class="actions">
-        <a class="btn" href="#contact">Request a bouquet</a>
-        <a class="btn outline" href="#gallery">See arrangements</a>
+  <div class="container hero-inner glass">
+    <div class="hero-left">
+      <h1>Flowers that feel like sunshine.</h1>
+      <p>Create a bouquet with bright accents, clean lines, and premium finish.</p>
+      <div class="cta">
+        <a class="pill primary" href="#contact">Contact us</a>
+        <a class="pill" href="#gallery">Browse gallery</a>
+      </div>
+      <div class="notes">
+        <div class="note"><strong>Gift ready</strong><span>minimal wrapping</span></div>
+        <div class="note"><strong>Events</strong><span>weddings & business</span></div>
+        <div class="note"><strong>Delivery</strong><span>fast options</span></div>
       </div>
     </div>
 
-    <div class="hero-panel" aria-hidden="true">
-      <div class="panel-top"></div>
-      <div class="panel-mid"></div>
-      <div class="panel-bot"></div>
-      <span class="panel-label">Gallery preview</span>
+    <div class="hero-right" aria-hidden="true">
+      <div class="blob b1"></div>
+      <div class="blob b2"></div>
+      <div class="blob b3"></div>
+      <div class="hero-frame">Your bouquet photo</div>
     </div>
   </div>
 </section>
 
 <section id="about" class="section">
-  <div class="container">
-    <div class="two">
-      <div>
-        <h2>About</h2>
-        <p class="muted">
-          Amaryllis focuses on modern compositions: airy structure, controlled palette,
-          and premium finishing.
-        </p>
+  <div class="container glass">
+    <div class="section-head">
+      <h2>About</h2>
+      <p>Modern floral compositions with bright, happy colors and clean structure.</p>
+    </div>
+    <div class="row">
+      <div class="panel">
+        <h3>Signature look</h3>
+        <p>Light, airy bouquets with balanced palette and premium wrapping.</p>
       </div>
-      <div class="about-metrics">
-        <div class="metric"><strong>Daily</strong><span>fresh arrivals</span></div>
-        <div class="metric"><strong>Fast</strong><span>delivery options</span></div>
-        <div class="metric"><strong>Custom</strong><span>event orders</span></div>
+      <div class="panel">
+        <h3>Fresh workflow</h3>
+        <p>Daily sourcing, careful hydration, and quality control before delivery.</p>
+      </div>
+      <div class="panel">
+        <h3>Custom orders</h3>
+        <p>Tell us color, budget, and mood — we’ll propose options quickly.</p>
       </div>
     </div>
   </div>
 </section>
 
-<section id="gallery" class="section alt">
-  <div class="container">
-    <div class="head">
+<section id="gallery" class="section">
+  <div class="container glass">
+    <div class="section-head">
       <h2>Picture Gallery</h2>
-      <p class="muted">Replace each placeholder with a real image later.</p>
+      <p>Replace placeholders with your real images anytime.</p>
     </div>
 
-    <div class="grid">
-      <figure class="tile a">01</figure>
-      <figure class="tile b">02</figure>
-      <figure class="tile c">03</figure>
-      <figure class="tile d">04</figure>
-      <figure class="tile e">05</figure>
-      <figure class="tile f">06</figure>
+    <div class="masonry">
+      <div class="shot s1">01</div>
+      <div class="shot s2">02</div>
+      <div class="shot s3">03</div>
+      <div class="shot s4">04</div>
+      <div class="shot s5">05</div>
+      <div class="shot s6">06</div>
+      <div class="shot s7">07</div>
+      <div class="shot s8">08</div>
     </div>
   </div>
 </section>
 
 <section id="video" class="section">
-  <div class="container">
-    <div class="head">
+  <div class="container glass">
+    <div class="section-head">
       <h2>Video</h2>
-      <p class="muted">YouTube embed (swap VIDEO_ID).</p>
+      <p>Swap the YouTube VIDEO_ID.</p>
     </div>
-    <div class="frame">
+    <div class="video">
       <iframe
         src="https://www.youtube.com/embed/VIDEO_ID"
         title="Amaryllis video"
@@ -102,32 +116,34 @@
   </div>
 </section>
 
-<section id="visit" class="section alt">
-  <div class="container">
-    <div class="head">
+<section id="visit" class="section">
+  <div class="container glass">
+    <div class="section-head">
       <h2>Map & Contact</h2>
-      <p class="muted">Add your exact address, phone, and email.</p>
+      <p>Location, details, and a simple form.</p>
     </div>
 
-    <div class="cols">
+    <div class="layout">
       <div class="map">
         <iframe
           src="https://www.google.com/maps?q=Tbilisi&output=embed"
           loading="lazy"></iframe>
       </div>
 
-      <div class="formbox" id="contact">
-        <div class="info">
-          <p><strong>Phone:</strong> +995 XXX XX XX XX</p>
-          <p><strong>Address:</strong> Your address</p>
-          <p><strong>Email:</strong> hello@amaryllis.ge</p>
+      <div class="contact" id="contact">
+        <div class="contact-top">
+          <div class="line"><strong>Phone:</strong> +995 XXX XX XX XX</div>
+          <div class="line"><strong>Address:</strong> Your address</div>
+          <div class="line"><strong>Email:</strong> hello@amaryllis.ge</div>
         </div>
 
-        <form method="post" action="#" class="form">
-          <input type="text" name="name" placeholder="Name" required />
-          <input type="text" name="contact" placeholder="Phone / Email" required />
+        <form class="form" method="post" action="#">
+          <div class="two">
+            <input type="text" name="name" placeholder="Name" required />
+            <input type="text" name="contact" placeholder="Phone / Email" required />
+          </div>
           <textarea name="message" rows="5" placeholder="Message" required></textarea>
-          <button class="btn" type="submit">Send message</button>
+          <button class="pill primary" type="submit">Send</button>
         </form>
       </div>
     </div>
@@ -135,7 +151,7 @@
 </section>
 
 <footer class="footer">
-  <div class="container foot">
+  <div class="container footer-inner">
     <span>© <?php echo date('Y'); ?> Amaryllis</span>
     <span class="muted">Instagram · Facebook · TikTok</span>
   </div>
