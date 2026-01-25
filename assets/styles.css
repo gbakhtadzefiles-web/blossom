@@ -150,36 +150,46 @@ a{color:inherit; text-decoration:none}
 .card h3{margin:0 0 6px}
 .card p{margin:0; color:var(--muted)}
 
-/* ===== UPDATED GALLERY (12 thumbnails: 4 columns x 3 rows) ===== */
+/* ===== PROFESSIONAL THUMBNAIL GALLERY (4 cols x 3 rows) ===== */
 .gallery-grid{
   display:grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap:12px;
 }
 
-/* small consistent thumbnails */
+/* fixed, uniform rectangles (like your red boxes) */
 .gallery-item{
   display:block;
-  border-radius: 18px;
+  border-radius: 16px;
   border:1px solid var(--stroke);
   overflow:hidden;
   background: rgba(16,24,40,.03);
-  box-shadow: 0 10px 30px rgba(16,24,40,.05);
-  aspect-ratio: 4 / 3;   /* uniform shape */
-  max-height: 170px;     /* prevents “huge images” */
+  box-shadow: 0 10px 24px rgba(16,24,40,.05);
+  height: 140px;               /* <-- all thumbnails same size */
 }
 
 .gallery-item img{
   width:100%;
   height:100%;
-  object-fit:cover;
+  object-fit:cover;             /* crops to same shape */
+  object-position:center;
   display:block;
   transform: scale(1);
   transition: transform .25s ease;
 }
 
 .gallery-item:hover img{
-  transform: scale(1.04);
+  transform: scale(1.05);
+}
+
+/* Responsive: keep it clean on smaller screens */
+@media (max-width: 980px){
+  .gallery-grid{ grid-template-columns: repeat(3, 1fr); }
+  .gallery-item{ height: 130px; }
+}
+@media (max-width: 640px){
+  .gallery-grid{ grid-template-columns: repeat(2, 1fr); }
+  .gallery-item{ height: 120px; }
 }
 
 /* Video */
