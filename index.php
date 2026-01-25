@@ -39,6 +39,8 @@ $thumbs = array_slice($images, 0, 12); // 12 thumbnails (3 rows x 4 cols)
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Amaryllis — Flower Boutique</title>
+  <link rel="icon" type="image/png" href="assets/Logo.png">
+<link rel="apple-touch-icon" href="assets/Logo.png">
   <link rel="stylesheet" href="assets/styles.css" />
 </head>
 <body class="t1">
@@ -196,6 +198,11 @@ $thumbs = array_slice($images, 0, 12); // 12 thumbnails (3 rows x 4 cols)
     </div>
   </div>
 </footer>
-
+<script>
+  // Remove any hash like #visit on load, keep page clean
+  if (window.location.hash) {
+    history.replaceState(null, "", window.location.pathname + window.location.search);
+  }
+</script>
 </body>
 </html>
