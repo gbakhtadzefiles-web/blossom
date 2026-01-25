@@ -1,11 +1,14 @@
 <?php
 /**
- * gallery.php — 4x3 grid + lightbox popup (prev/next + counter) + captions
- * Fixes:
- * 1) Close (X) now ALWAYS closes (was triggering next due to overlay click handler)
- * 2) Adds dummy names for every image and shows them:
- *    - under thumbnails
- *    - inside popup (caption under image)
+ * gallery.php — 4x3 grid + LIGHTBOX (popup) with:
+ * - Uniform thumbnails (same size/shape)
+ * - Captions under thumbnails
+ * - Popup caption + counter + Prev/Next buttons
+ * - FIXED keyboard: ESC closes, ←/→ navigate (reliable)
+ * - FIXED close button: always closes (no next)
+ *
+ * Usage in index.php:
+ *   <?php include __DIR__ . '/gallery.php'; ?>
  */
 
 $items = [
@@ -36,12 +39,13 @@ $items = [
   ["url"=>"https://i.imgur.com/sYtBxnG.jpeg", "title"=>"Bouquet 25 — Amaryllis Special"],
 ];
 
-// Grid shows 12; popup includes ALL
+// show 12 thumbs in grid; lightbox includes ALL
 $thumbs = array_slice($items, 0, 12);
 $total  = count($items);
 ?>
+
 <style>
-/* Grid layout + thumb styling */
+/* ===== Grid layout (4 cols x 3 rows) ===== */
 #gallery .am-gallery-grid{
   display:grid !important;
   grid-template-columns:repeat(4, minmax(0, 1fr)) !important;
@@ -57,13 +61,15 @@ $total  = count($items);
 #gallery .am-gallery-item{
   display:block !important;
   width:100% !important;
-  height:140px !important;
+  height:140px !important;          /* fixed height -> same size */
   overflow:hidden !important;
+  cursor:zoom-in !important;
 }
 #gallery .am-gallery-item img{
   width:100% !important;
   height:100% !important;
-  object-fit:cover !important;
+  object-fit:cover !important;       /* crop to same shape */
+  object-position:center !important;
   display:block !important;
   transform:scale(1) !important;
   transition:transform .25s ease !important;
@@ -71,7 +77,7 @@ $total  = count($items);
 #gallery .am-gallery-item:hover img{ transform:scale(1.05) !important; }
 #gallery .am-caption{
   padding:10px 12px !important;
-  background: rgba(255,255,255,.75) !important;
+  background: rgba(255,255,255,.78) !important;
   border-top:1px solid rgba(16,24,40,.08) !important;
   font-weight:800 !important;
   color: rgba(18,32,38,.80) !important;
@@ -82,7 +88,7 @@ $total  = count($items);
   text-overflow:ellipsis !important;
 }
 
-/* Responsive */
+/* responsive */
 @media (max-width: 980px){
   #gallery .am-gallery-grid{ grid-template-columns:repeat(3, minmax(0,1fr)) !important; }
   #gallery .am-gallery-item{ height:130px !important; }
@@ -92,7 +98,7 @@ $total  = count($items);
   #gallery .am-gallery-item{ height:120px !important; }
 }
 
-/* Lightbox */
+/* ===== Lightbox ===== */
 .am-lightbox{
   position:fixed;
   inset:0;
@@ -179,9 +185,8 @@ $total  = count($items);
   right:10px;
   border-radius: 999px;
   padding:8px 10px;
-  z-index: 5;
+  z-index: 6;
 }
-
 .am-lightbox .navSide{
   position:absolute;
   top:0; bottom:0;
@@ -190,7 +195,7 @@ $total  = count($items);
   background: transparent;
   border:0;
   cursor:pointer;
-  z-index: 4;
+  z-index: 5;
 }
 .am-lightbox .navPrev{ left:0; }
 .am-lightbox .navNext{ right:0; }
@@ -207,7 +212,7 @@ $total  = count($items);
   padding:6px 10px;
   border-radius: 999px;
   user-select:none;
-  z-index: 3;
+  z-index: 4;
 }
 
 @media (max-width: 520px){
@@ -227,19 +232,8 @@ $total  = count($items);
     <div class="am-gallery-grid">
       <?php foreach ($thumbs as $i => $it): ?>
         <div class="am-gallery-card">
-          <a
-            class="am-gallery-item"
-            href="#"
-            data-index="<?= $i ?>"
-            aria-label="Open <?= htmlspecialchars($it['title']) ?>"
-          >
-            <img
-              src="<?= htmlspecialchars($it['url']) ?>"
-              alt="<?= htmlspecialchars($it['title']) ?>"
-              loading="lazy"
-              decoding="async"
-              referrerpolicy="no-referrer"
-            />
+          <a class="am-gallery-item" href="#" data-index="<?= $i ?>" aria-label="Open <?= htmlspecialchars($it['title']) ?>">
+            <img src="<?= htmlspecialchars($it['url']) ?>" alt="<?= htmlspecialchars($it['title']) ?>" loading="lazy" decoding="async" referrerpolicy="no-referrer" />
           </a>
           <div class="am-caption"><?= htmlspecialchars($it['title']) ?></div>
         </div>
@@ -248,8 +242,8 @@ $total  = count($items);
   </div>
 </section>
 
-<!-- Lightbox -->
-<div class="am-lightbox" id="amLightbox" aria-hidden="true">
+<!-- Lightbox (tabindex for focus -> keyboard works reliably) -->
+<div class="am-lightbox" id="amLightbox" aria-hidden="true" tabindex="-1">
   <div class="backdrop" data-close="1"></div>
 
   <div class="panel" role="dialog" aria-modal="true" aria-label="Image viewer">
@@ -278,14 +272,15 @@ $total  = count($items);
 (() => {
   const ITEMS = <?php echo json_encode(array_values($items), JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE); ?>;
 
-  const lb = document.getElementById('amLightbox');
-  const imgEl = document.getElementById('amLightboxImg');
+  const lb        = document.getElementById('amLightbox');
+  const imgEl     = document.getElementById('amLightboxImg');
   const counterEl = document.getElementById('amCounter');
-  const titleEl = document.getElementById('amTitle');
+  const titleEl   = document.getElementById('amTitle');
+  const panelEl   = lb.querySelector('.panel');
 
   let index = 0;
 
-  function render() {
+  function render(){
     const item = ITEMS[index];
     imgEl.src = item.url;
     titleEl.textContent = item.title;
@@ -301,6 +296,9 @@ $total  = count($items);
 
     document.documentElement.style.overflow = 'hidden';
     document.body.style.overflow = 'hidden';
+
+    // ensure keyboard events work
+    lb.focus();
   }
 
   function close(){
@@ -315,38 +313,53 @@ $total  = count($items);
   function next(){ index = (index + 1) % ITEMS.length; render(); }
   function prev(){ index = (index - 1 + ITEMS.length) % ITEMS.length; render(); }
 
-  // IMPORTANT: stop click propagation so the X doesn't behave like next/prev
-  lb.querySelector('.panel').addEventListener('click', (e) => e.stopPropagation());
+  // prevent clicks inside panel from bubbling to backdrop handlers
+  panelEl.addEventListener('click', (e) => e.stopPropagation());
 
-  // Thumbnail click -> open
+  // Open on thumbnail click
   document.addEventListener('click', (e) => {
     const thumb = e.target.closest('.am-gallery-item');
     if (thumb){
       e.preventDefault();
       const i = parseInt(thumb.getAttribute('data-index') || '0', 10);
       openAt(i);
+    }
+  });
+
+  // Lightbox click controls
+  lb.addEventListener('click', (e) => {
+    if (!lb.classList.contains('is-open')) return;
+
+    if (e.target.classList.contains('backdrop') || e.target.closest('[data-close="1"]')) {
+      close();
       return;
     }
+    if (e.target.closest('[data-next="1"]')) { next(); return; }
+    if (e.target.closest('[data-prev="1"]')) { prev(); return; }
+  });
 
-    // Lightbox controls (only when open)
+  // Keyboard controls (reliable): window + capture
+  function onKey(e){
     if (!lb.classList.contains('is-open')) return;
 
-    if (e.target.closest('[data-close="1"]')) { close(); return; }
-    if (e.target.closest('[data-next="1"]'))  { next();  return; }
-    if (e.target.closest('[data-prev="1"]'))  { prev();  return; }
-  });
+    const k = e.key || e.code;
 
-  // Clicking outside the panel closes (backdrop)
-  lb.addEventListener('click', (e) => {
-    if (e.target.classList.contains('backdrop')) close();
-  });
-
-  // Keyboard controls
-  document.addEventListener('keydown', (e) => {
-    if (!lb.classList.contains('is-open')) return;
-    if (e.key === 'Escape') close();
-    if (e.key === 'ArrowRight') next();
-    if (e.key === 'ArrowLeft') prev();
-  });
+    if (k === 'Escape' || k === 'Esc') {
+      e.preventDefault();
+      close();
+      return;
+    }
+    if (k === 'ArrowRight' || k === 'Right') {
+      e.preventDefault();
+      next();
+      return;
+    }
+    if (k === 'ArrowLeft' || k === 'Left') {
+      e.preventDefault();
+      prev();
+      return;
+    }
+  }
+  window.addEventListener('keydown', onKey, true);
 })();
 </script>
