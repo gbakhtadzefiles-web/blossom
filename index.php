@@ -14,7 +14,7 @@
 <header class="site-header">
   <div class="container header-inner">
     <a class="brand" href="#">
-      <img src="Logo.png" alt="Amaryllis Logo" class="logo" />
+      <img src="assets/Logo.png" alt="Amaryllis Logo" class="logo" />
       <span class="brand-text">
         <strong>Amaryllis</strong>
         <small>Flower Boutique</small>
