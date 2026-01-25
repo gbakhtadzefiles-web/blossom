@@ -1,58 +1,64 @@
 <?php
 /**
- * gallery.php — 4x3 grid + lightbox popup (prev/next + counter)
- * Paste this file as-is and include it from index.php:
- *   <?php include __DIR__ . '/gallery.php'; ?>
+ * gallery.php — 4x3 grid + lightbox popup (prev/next + counter) + captions
+ * Fixes:
+ * 1) Close (X) now ALWAYS closes (was triggering next due to overlay click handler)
+ * 2) Adds dummy names for every image and shows them:
+ *    - under thumbnails
+ *    - inside popup (caption under image)
  */
 
-$images = [
-  "https://i.imgur.com/LRNoCR9.jpeg",
-  "https://i.imgur.com/tRpkGaP.jpeg",
-  "https://i.imgur.com/DZNhyp3.jpeg",
-  "https://i.imgur.com/CkFXKui.jpeg",
-  "https://i.imgur.com/gTHFrAs.jpeg",
-  "https://i.imgur.com/tsfz8xV.jpeg",
-  "https://i.imgur.com/601UUzN.jpeg",
-  "https://i.imgur.com/NMvHLQE.jpeg",
-  "https://i.imgur.com/uQMmdeK.jpeg",
-  "https://i.imgur.com/Pbieus0.jpeg",
-  "https://i.imgur.com/3NOtctG.jpeg",
-  "https://i.imgur.com/dPOvcZA.jpeg",
-  "https://i.imgur.com/rnL55Re.jpeg",
-  "https://i.imgur.com/5VCqiDm.jpeg",
-  "https://i.imgur.com/Rrv3Vuq.jpeg",
-  "https://i.imgur.com/hstOkEd.jpeg",
-  "https://i.imgur.com/dS6f7YS.jpeg",
-  "https://i.imgur.com/5DghSgN.jpeg",
-  "https://i.imgur.com/GRt4yYv.jpeg",
-  "https://i.imgur.com/WlkCfZ9.jpeg",
-  "https://i.imgur.com/fueXVal.jpeg",
-  "https://i.imgur.com/EgpW1vS.jpeg",
-  "https://i.imgur.com/sT5PHvI.jpeg",
-  "https://i.imgur.com/AJKJpLB.jpeg",
-  "https://i.imgur.com/sYtBxnG.jpeg",
+$items = [
+  ["url"=>"https://i.imgur.com/LRNoCR9.jpeg", "title"=>"Bouquet 01 — Soft Pink Mix"],
+  ["url"=>"https://i.imgur.com/tRpkGaP.jpeg", "title"=>"Bouquet 02 — Pastel Harmony"],
+  ["url"=>"https://i.imgur.com/DZNhyp3.jpeg", "title"=>"Bouquet 03 — Sunny Accent"],
+  ["url"=>"https://i.imgur.com/CkFXKui.jpeg", "title"=>"Bouquet 04 — Lavender Dream"],
+  ["url"=>"https://i.imgur.com/gTHFrAs.jpeg", "title"=>"Bouquet 05 — Classic White"],
+  ["url"=>"https://i.imgur.com/tsfz8xV.jpeg", "title"=>"Bouquet 06 — Modern Minimal"],
+  ["url"=>"https://i.imgur.com/601UUzN.jpeg", "title"=>"Bouquet 07 — Garden Fresh"],
+  ["url"=>"https://i.imgur.com/NMvHLQE.jpeg", "title"=>"Bouquet 08 — Blush & Green"],
+  ["url"=>"https://i.imgur.com/uQMmdeK.jpeg", "title"=>"Bouquet 09 — Elegant Contrast"],
+  ["url"=>"https://i.imgur.com/Pbieus0.jpeg", "title"=>"Bouquet 10 — Romantic Tone"],
+  ["url"=>"https://i.imgur.com/3NOtctG.jpeg", "title"=>"Bouquet 11 — Bright Celebration"],
+  ["url"=>"https://i.imgur.com/dPOvcZA.jpeg", "title"=>"Bouquet 12 — Signature Wrap"],
+  ["url"=>"https://i.imgur.com/rnL55Re.jpeg", "title"=>"Bouquet 13 — Soft Spring"],
+  ["url"=>"https://i.imgur.com/5VCqiDm.jpeg", "title"=>"Bouquet 14 — Pastel Charm"],
+  ["url"=>"https://i.imgur.com/Rrv3Vuq.jpeg", "title"=>"Bouquet 15 — Clean & Crisp"],
+  ["url"=>"https://i.imgur.com/hstOkEd.jpeg", "title"=>"Bouquet 16 — Pink Delight"],
+  ["url"=>"https://i.imgur.com/dS6f7YS.jpeg", "title"=>"Bouquet 17 — Blooming Mood"],
+  ["url"=>"https://i.imgur.com/5DghSgN.jpeg", "title"=>"Bouquet 18 — Fresh Morning"],
+  ["url"=>"https://i.imgur.com/GRt4yYv.jpeg", "title"=>"Bouquet 19 — Color Pop"],
+  ["url"=>"https://i.imgur.com/WlkCfZ9.jpeg", "title"=>"Bouquet 20 — Minimal Love"],
+  ["url"=>"https://i.imgur.com/fueXVal.jpeg", "title"=>"Bouquet 21 — Soft Luxury"],
+  ["url"=>"https://i.imgur.com/EgpW1vS.jpeg", "title"=>"Bouquet 22 — Elegant Bloom"],
+  ["url"=>"https://i.imgur.com/sT5PHvI.jpeg", "title"=>"Bouquet 23 — Light & Airy"],
+  ["url"=>"https://i.imgur.com/AJKJpLB.jpeg", "title"=>"Bouquet 24 — Weekend Gift"],
+  ["url"=>"https://i.imgur.com/sYtBxnG.jpeg", "title"=>"Bouquet 25 — Amaryllis Special"],
 ];
 
-// Show 12 thumbs in the grid, but lightbox will include ALL images
-$thumbs = array_slice($images, 0, 12);
-$total  = count($images);
+// Grid shows 12; popup includes ALL
+$thumbs = array_slice($items, 0, 12);
+$total  = count($items);
 ?>
 <style>
-/* Grid (high specificity override) */
+/* Grid layout + thumb styling */
 #gallery .am-gallery-grid{
   display:grid !important;
   grid-template-columns:repeat(4, minmax(0, 1fr)) !important;
   gap:12px !important;
 }
-#gallery .am-gallery-item{
-  display:block !important;
-  width:100% !important;
-  height:140px !important;
+#gallery .am-gallery-card{
   border-radius:16px !important;
   overflow:hidden !important;
   border:1px solid rgba(16,24,40,.10) !important;
   background: rgba(16,24,40,.03) !important;
   box-shadow: 0 10px 24px rgba(16,24,40,.05) !important;
+}
+#gallery .am-gallery-item{
+  display:block !important;
+  width:100% !important;
+  height:140px !important;
+  overflow:hidden !important;
 }
 #gallery .am-gallery-item img{
   width:100% !important;
@@ -63,7 +69,20 @@ $total  = count($images);
   transition:transform .25s ease !important;
 }
 #gallery .am-gallery-item:hover img{ transform:scale(1.05) !important; }
+#gallery .am-caption{
+  padding:10px 12px !important;
+  background: rgba(255,255,255,.75) !important;
+  border-top:1px solid rgba(16,24,40,.08) !important;
+  font-weight:800 !important;
+  color: rgba(18,32,38,.80) !important;
+  font-size:13px !important;
+  line-height:1.2 !important;
+  white-space:nowrap !important;
+  overflow:hidden !important;
+  text-overflow:ellipsis !important;
+}
 
+/* Responsive */
 @media (max-width: 980px){
   #gallery .am-gallery-grid{ grid-template-columns:repeat(3, minmax(0,1fr)) !important; }
   #gallery .am-gallery-item{ height:130px !important; }
@@ -104,6 +123,7 @@ $total  = count($images);
   align-items:center;
   justify-content:center;
   height: min(70vh, 640px);
+  position:relative;
 }
 .am-lightbox .stage img{
   max-width:100%;
@@ -111,6 +131,14 @@ $total  = count($images);
   object-fit:contain;
   display:block;
 }
+.am-lightbox .img-title{
+  padding:12px 14px;
+  background: rgba(255,255,255,.92);
+  border-top: 1px solid rgba(16,24,40,.10);
+  font-weight:900;
+  color: rgba(18,32,38,.85);
+}
+
 .am-lightbox .bar{
   display:flex;
   align-items:center;
@@ -144,13 +172,16 @@ $total  = count($images);
 }
 .am-lightbox button:hover{ transform: translateY(-1px); }
 .am-lightbox button:active{ transform: translateY(0); }
+
 .am-lightbox .close{
   position:absolute;
   top:10px;
   right:10px;
   border-radius: 999px;
   padding:8px 10px;
+  z-index: 5;
 }
+
 .am-lightbox .navSide{
   position:absolute;
   top:0; bottom:0;
@@ -159,12 +190,14 @@ $total  = count($images);
   background: transparent;
   border:0;
   cursor:pointer;
+  z-index: 4;
 }
 .am-lightbox .navPrev{ left:0; }
 .am-lightbox .navNext{ right:0; }
+
 .am-lightbox .hint{
   position:absolute;
-  bottom:58px;
+  bottom:10px;
   left:50%;
   transform:translateX(-50%);
   color: rgba(255,255,255,.75);
@@ -174,6 +207,7 @@ $total  = count($images);
   padding:6px 10px;
   border-radius: 999px;
   user-select:none;
+  z-index: 3;
 }
 
 @media (max-width: 520px){
@@ -191,28 +225,30 @@ $total  = count($images);
     </div>
 
     <div class="am-gallery-grid">
-      <?php foreach ($thumbs as $i => $url): ?>
-        <a
-          class="am-gallery-item"
-          href="#"
-          data-index="<?= $i ?>"
-          data-full="<?= htmlspecialchars($url) ?>"
-          aria-label="Open photo <?= $i + 1 ?>"
-        >
-          <img
-            src="<?= htmlspecialchars($url) ?>"
-            alt="Bouquet <?= $i + 1 ?>"
-            loading="lazy"
-            decoding="async"
-            referrerpolicy="no-referrer"
-          />
-        </a>
+      <?php foreach ($thumbs as $i => $it): ?>
+        <div class="am-gallery-card">
+          <a
+            class="am-gallery-item"
+            href="#"
+            data-index="<?= $i ?>"
+            aria-label="Open <?= htmlspecialchars($it['title']) ?>"
+          >
+            <img
+              src="<?= htmlspecialchars($it['url']) ?>"
+              alt="<?= htmlspecialchars($it['title']) ?>"
+              loading="lazy"
+              decoding="async"
+              referrerpolicy="no-referrer"
+            />
+          </a>
+          <div class="am-caption"><?= htmlspecialchars($it['title']) ?></div>
+        </div>
       <?php endforeach; ?>
     </div>
   </div>
 </section>
 
-<!-- Lightbox markup -->
+<!-- Lightbox -->
 <div class="am-lightbox" id="amLightbox" aria-hidden="true">
   <div class="backdrop" data-close="1"></div>
 
@@ -223,9 +259,10 @@ $total  = count($images);
       <button class="navSide navPrev" type="button" data-prev="1" aria-label="Previous"></button>
       <img id="amLightboxImg" alt="Selected bouquet">
       <button class="navSide navNext" type="button" data-next="1" aria-label="Next"></button>
-
       <div class="hint">Use ← → keys • Esc to close</div>
     </div>
+
+    <div class="img-title" id="amTitle">Title</div>
 
     <div class="bar">
       <div class="counter" id="amCounter">1 / <?= $total ?></div>
@@ -239,23 +276,29 @@ $total  = count($images);
 
 <script>
 (() => {
-  const IMAGES = <?php echo json_encode(array_values($images), JSON_UNESCAPED_SLASHES); ?>;
+  const ITEMS = <?php echo json_encode(array_values($items), JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE); ?>;
 
   const lb = document.getElementById('amLightbox');
   const imgEl = document.getElementById('amLightboxImg');
   const counterEl = document.getElementById('amCounter');
+  const titleEl = document.getElementById('amTitle');
 
   let index = 0;
 
+  function render() {
+    const item = ITEMS[index];
+    imgEl.src = item.url;
+    titleEl.textContent = item.title;
+    counterEl.textContent = (index + 1) + " / " + ITEMS.length;
+  }
+
   function openAt(i){
-    index = (i + IMAGES.length) % IMAGES.length;
-    imgEl.src = IMAGES[index];
-    counterEl.textContent = (index + 1) + " / " + IMAGES.length;
+    index = (i + ITEMS.length) % ITEMS.length;
+    render();
 
     lb.classList.add('is-open');
     lb.setAttribute('aria-hidden', 'false');
 
-    // prevent background scroll
     document.documentElement.style.overflow = 'hidden';
     document.body.style.overflow = 'hidden';
   }
@@ -269,22 +312,33 @@ $total  = count($images);
     document.body.style.overflow = '';
   }
 
-  function next(){ openAt(index + 1); }
-  function prev(){ openAt(index - 1); }
+  function next(){ index = (index + 1) % ITEMS.length; render(); }
+  function prev(){ index = (index - 1 + ITEMS.length) % ITEMS.length; render(); }
+
+  // IMPORTANT: stop click propagation so the X doesn't behave like next/prev
+  lb.querySelector('.panel').addEventListener('click', (e) => e.stopPropagation());
 
   // Thumbnail click -> open
   document.addEventListener('click', (e) => {
-    const a = e.target.closest('.am-gallery-item');
-    if (a){
+    const thumb = e.target.closest('.am-gallery-item');
+    if (thumb){
       e.preventDefault();
-      const i = parseInt(a.getAttribute('data-index') || '0', 10);
+      const i = parseInt(thumb.getAttribute('data-index') || '0', 10);
       openAt(i);
       return;
     }
 
-    if (e.target.closest('[data-close="1"]')) close();
-    if (e.target.closest('[data-next="1"]')) next();
-    if (e.target.closest('[data-prev="1"]')) prev();
+    // Lightbox controls (only when open)
+    if (!lb.classList.contains('is-open')) return;
+
+    if (e.target.closest('[data-close="1"]')) { close(); return; }
+    if (e.target.closest('[data-next="1"]'))  { next();  return; }
+    if (e.target.closest('[data-prev="1"]'))  { prev();  return; }
+  });
+
+  // Clicking outside the panel closes (backdrop)
+  lb.addEventListener('click', (e) => {
+    if (e.target.classList.contains('backdrop')) close();
   });
 
   // Keyboard controls
@@ -293,11 +347,6 @@ $total  = count($images);
     if (e.key === 'Escape') close();
     if (e.key === 'ArrowRight') next();
     if (e.key === 'ArrowLeft') prev();
-  });
-
-  // Basic safety: if image fails to load, still show counter and allow navigation
-  imgEl.addEventListener('error', () => {
-    // keep UI usable even if one link fails
   });
 })();
 </script>
