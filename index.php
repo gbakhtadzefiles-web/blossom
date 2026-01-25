@@ -1,7 +1,8 @@
 ﻿<?php
-// Template 1: Soft Pastel — External Gallery (Imgur)
+// index.php — Template 1 (Soft Pastel) with 12-thumbnail gallery (4 cols x 3 rows)
 
-$gallery = [
+// Full list (you can keep more for future pages)
+$images = [
   "https://i.imgur.com/LRNoCR9.jpeg",
   "https://i.imgur.com/tRpkGaP.jpeg",
   "https://i.imgur.com/DZNhyp3.jpeg",
@@ -29,23 +30,23 @@ $gallery = [
   "https://i.imgur.com/sYtBxnG.jpeg"
 ];
 
-// use first 4 for hero mini grid
-$mini = array_slice($gallery, 0, 4);
+$mini   = array_slice($images, 0, 4);
+$thumbs = array_slice($images, 0, 12); // 12 thumbnails (3 rows x 4 cols)
 ?>
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Amaryllis — Flower Boutique</title>
-  <link rel="stylesheet" href="assets/styles.css">
+  <link rel="stylesheet" href="assets/css/styles.css" />
 </head>
 <body class="t1">
 
 <header class="site-header">
   <div class="container header-inner">
     <a class="brand" href="#">
-      <img src="assets/logo.png" class="logo" alt="Amaryllis Logo">
+      <img src="assets/img/logo.png" alt="Amaryllis Logo" class="logo" />
       <span class="brand-text">
         <strong>Amaryllis</strong>
         <small>Flower Boutique</small>
@@ -62,10 +63,8 @@ $mini = array_slice($gallery, 0, 4);
   </div>
 </header>
 
-<!-- HERO -->
 <section class="hero">
   <div class="container hero-inner">
-
     <div class="hero-copy">
       <h1>Bright flowers. Simple elegance.</h1>
       <p>Seasonal bouquets, curated gifts, and same-day delivery.</p>
@@ -85,110 +84,137 @@ $mini = array_slice($gallery, 0, 4);
     <div class="hero-card">
       <div class="hero-card-top">
         <h3>Today’s Highlight</h3>
-        <p>Ask for “Amaryllis Signature” bouquet.</p>
+        <p>Ask for “Amaryllis Signature” bouquet — light, joyful, modern.</p>
       </div>
 
       <div class="hero-card-bottom">
         <div class="mini-grid">
           <?php foreach ($mini as $img): ?>
-            <img src="<?= $img ?>" alt="Bouquet" loading="lazy" class="mini">
+            <img class="mini" src="<?= htmlspecialchars($img) ?>" alt="Bouquet preview" loading="lazy" decoding="async" referrerpolicy="no-referrer" />
           <?php endforeach; ?>
         </div>
+        <small class="muted">Latest previews from our gallery</small>
       </div>
     </div>
-
   </div>
 </section>
 
-<!-- ABOUT -->
 <section id="about" class="section">
   <div class="container">
     <div class="section-head">
       <h2>About</h2>
-      <p>Modern floral compositions with bright accents and natural textures.</p>
+      <p>We create clean, modern floral compositions with bright accents and natural textures.</p>
     </div>
 
     <div class="cards">
       <article class="card">
         <h3>Style</h3>
-        <p>Clean, airy, minimal bouquets.</p>
+        <p>Minimalistic bouquets with space, balance, and uplifting colors.</p>
       </article>
       <article class="card">
         <h3>Quality</h3>
-        <p>Fresh flowers, handled with care.</p>
+        <p>Fresh flowers, careful storage, and consistent craftsmanship.</p>
       </article>
       <article class="card">
         <h3>Service</h3>
-        <p>Custom requests & fast delivery.</p>
+        <p>Custom requests, gift notes, and fast delivery.</p>
       </article>
     </div>
   </div>
 </section>
 
-<!-- GALLERY -->
 <section id="gallery" class="section alt">
   <div class="container">
     <div class="section-head">
       <h2>Picture Gallery</h2>
-      <p>Selected works from our collection.</p>
+      <p>12 selected bouquets (small thumbnails).</p>
     </div>
 
-    <div class="gallery">
-      <?php foreach ($gallery as $img): ?>
-        <figure class="ph">
-          <img src="<?= $img ?>" alt="Bouquet" loading="lazy">
-        </figure>
+    <div class="gallery-grid">
+      <?php foreach ($thumbs as $i => $img): ?>
+        <a class="gallery-item" href="<?= htmlspecialchars($img) ?>" target="_blank" rel="noopener">
+          <img
+            src="<?= htmlspecialchars($img) ?>"
+            alt="Bouquet <?= $i + 1 ?>"
+            loading="lazy"
+            decoding="async"
+            referrerpolicy="no-referrer"
+          />
+        </a>
       <?php endforeach; ?>
     </div>
   </div>
 </section>
 
-<!-- VIDEO -->
 <section id="video" class="section">
   <div class="container">
     <div class="section-head">
       <h2>Video</h2>
-      <p>Behind the scenes at Amaryllis.</p>
+      <p>Embed your YouTube video (replace VIDEO_ID).</p>
     </div>
 
     <div class="media">
-      <iframe src="https://www.youtube.com/embed/VIDEO_ID" allowfullscreen></iframe>
+      <iframe
+        src="https://www.youtube.com/embed/VIDEO_ID"
+        title="Amaryllis video"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen></iframe>
     </div>
   </div>
 </section>
 
-<!-- MAP + CONTACT -->
 <section id="visit" class="section alt">
   <div class="container">
-    <div class="split">
+    <div class="section-head">
+      <h2>Map & Visit</h2>
+      <p>Show your location and make it easy to reach you.</p>
+    </div>
 
+    <div class="split">
       <div class="map">
-        <iframe src="https://www.google.com/maps?q=Tbilisi&output=embed"></iframe>
+        <iframe
+          src="https://www.google.com/maps?q=Tbilisi&output=embed"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"></iframe>
       </div>
 
       <div class="contact-card" id="contact">
         <h3>Contact</h3>
-        <p class="muted">
-          Phone: <strong>+995 XXX XX XX XX</strong><br>
-          Address: <strong>Your address</strong>
-        </p>
+        <p class="muted">Phone: <strong>+995 XXX XX XX XX</strong><br/>Address: <strong>Your address</strong></p>
 
-        <form class="form">
-          <input type="text" placeholder="Name" required>
-          <input type="text" placeholder="Phone / Email" required>
-          <textarea rows="4" placeholder="Message" required></textarea>
-          <button class="btn">Send</button>
+        <form class="form" method="post" action="#">
+          <label>
+            Name
+            <input type="text" name="name" required />
+          </label>
+          <label>
+            Phone / Email
+            <input type="text" name="contact" required />
+          </label>
+          <label>
+            Message
+            <textarea name="message" rows="4" required></textarea>
+          </label>
+          <button class="btn" type="submit">Send</button>
+          <small class="muted">Hook this form to email/CRM later if needed.</small>
         </form>
       </div>
-
     </div>
   </div>
 </section>
 
 <footer class="footer">
   <div class="container footer-inner">
-    <strong>Amaryllis</strong>
-    <small class="muted">© <?= date('Y') ?></small>
+    <div>
+      <strong>Amaryllis</strong>
+      <small class="muted">© <?php echo date('Y'); ?></small>
+    </div>
+    <div class="footer-links">
+      <a href="#">Instagram</a>
+      <a href="#">Facebook</a>
+      <a href="#">TikTok</a>
+    </div>
   </div>
 </footer>
 

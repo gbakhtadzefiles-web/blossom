@@ -1,4 +1,5 @@
-﻿/* Template 1 — Soft Pastel (Full styles.css) */
+﻿/* assets/css/styles.css — Template 1 (Soft Pastel) UPDATED with 12-thumbnail gallery */
+
 :root{
   --bg:#ffffff;
   --text:#122026;
@@ -30,7 +31,7 @@ a{color:inherit; text-decoration:none}
 .container{
   max-width:var(--container);
   margin:0 auto;
-  padding:0 24px;
+  padding:0 24px; /* side spacing */
 }
 
 /* Header */
@@ -64,9 +65,10 @@ a{color:inherit; text-decoration:none}
   font-weight:700;
   box-shadow: 0 10px 30px rgba(255,77,157,.18);
   cursor:pointer;
+  transition: transform .15s ease;
 }
 .btn:hover{transform: translateY(-1px)}
-.btn:active{transform: translateY(0px)}
+.btn:active{transform: translateY(0)}
 .btn.ghost{
   background: transparent;
   border:1px solid var(--stroke);
@@ -96,6 +98,7 @@ a{color:inherit; text-decoration:none}
   font-size:13px;
 }
 
+/* Hero card */
 .hero-card{
   background: rgba(255,255,255,.78);
   border:1px solid var(--stroke);
@@ -109,18 +112,18 @@ a{color:inherit; text-decoration:none}
 .hero-card-top h3{margin:0 0 6px}
 .hero-card-top p{margin:0; color:var(--muted)}
 .hero-card-bottom{padding:18px; border-top:1px solid var(--stroke)}
-
 .mini-grid{
-  display:grid; grid-template-columns: repeat(4, 1fr);
+  display:grid;
+  grid-template-columns: repeat(4, 1fr);
   gap:10px;
 }
 .mini{
   width:100%;
-  height:46px;
+  height:56px;
   border-radius:14px;
   border:1px solid var(--stroke);
   background: rgba(16,24,40,.03);
-  object-fit: cover;
+  object-fit:cover;
   display:block;
 }
 
@@ -147,24 +150,26 @@ a{color:inherit; text-decoration:none}
 .card h3{margin:0 0 6px}
 .card p{margin:0; color:var(--muted)}
 
-/* Gallery */
-.gallery{
+/* ===== UPDATED GALLERY (12 thumbnails: 4 columns x 3 rows) ===== */
+.gallery-grid{
   display:grid;
-  grid-template-columns: repeat(12, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap:12px;
 }
-.ph{
-  grid-column: span 4;
-  height:220px;
-  border-radius: var(--radius);
+
+/* small consistent thumbnails */
+.gallery-item{
+  display:block;
+  border-radius: 18px;
   border:1px solid var(--stroke);
-  background: rgba(16,24,40,.03);
   overflow:hidden;
+  background: rgba(16,24,40,.03);
   box-shadow: 0 10px 30px rgba(16,24,40,.05);
-  margin:0;
-  position:relative;
+  aspect-ratio: 4 / 3;   /* uniform shape */
+  max-height: 170px;     /* prevents “huge images” */
 }
-.ph img{
+
+.gallery-item img{
   width:100%;
   height:100%;
   object-fit:cover;
@@ -172,7 +177,10 @@ a{color:inherit; text-decoration:none}
   transform: scale(1);
   transition: transform .25s ease;
 }
-.ph:hover img{transform: scale(1.03)}
+
+.gallery-item:hover img{
+  transform: scale(1.04);
+}
 
 /* Video */
 .media{
@@ -211,7 +219,6 @@ a{color:inherit; text-decoration:none}
 }
 .form{display:grid; gap:12px; margin-top:14px}
 label{display:grid; gap:6px; font-weight:700; font-size:13px}
-
 input,textarea{
   border-radius:14px;
   border:1px solid var(--stroke);
@@ -223,7 +230,6 @@ input:focus,textarea:focus{
   outline:2px solid rgba(34,193,255,.25);
   border-color: rgba(34,193,255,.35);
 }
-
 .muted{color:var(--muted)}
 
 /* Footer */
@@ -247,11 +253,16 @@ input:focus,textarea:focus{
   .cards{grid-template-columns: 1fr}
   .split{grid-template-columns: 1fr}
   .nav{display:none}
-  .ph{grid-column: span 6}
+
+  .gallery-grid{grid-template-columns: repeat(3, 1fr)}
+  .gallery-item{max-height: 160px}
 }
-@media (max-width: 560px){
+
+@media (max-width: 640px){
   .hero-copy h1{font-size:36px}
-  .ph{grid-column: span 12}
   .mini-grid{grid-template-columns: repeat(2, 1fr)}
-  .mini{height:56px}
+  .mini{height:64px}
+
+  .gallery-grid{grid-template-columns: repeat(2, 1fr)}
+  .gallery-item{max-height: 150px}
 }
