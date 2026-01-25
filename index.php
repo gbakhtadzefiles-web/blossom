@@ -46,7 +46,7 @@ $thumbs = array_slice($images, 0, 12); // 12 thumbnails (3 rows x 4 cols)
 <header class="site-header">
   <div class="container header-inner">
     <a class="brand" href="#">
-      <img src="assets/logo.png" alt="Amaryllis Logo" class="logo" />
+      <img src="assets/Logo.png" alt="Amaryllis Logo" class="logo" />
       <span class="brand-text">
         <strong>Amaryllis</strong>
         <small>Flower Boutique</small>
