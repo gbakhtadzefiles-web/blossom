@@ -1,11 +1,11 @@
-﻿/* assets/styles.css — Amaryllis (Soft Pastel) FINAL
-   Fixes included:
-   - Header/nav ALWAYS fixed (cannot scroll away)
-   - Prevents “fixed inside transformed parent” issues (forces header outside stacking contexts)
-   - Adds scroll padding so anchor links don't hide under header
-   - Removes duplicate body blocks and keeps one source of truth
+﻿/* assets/styles.css — Amaryllis (Soft Pastel)
+   FINAL VERSION
+   - Header/nav ALWAYS fixed
+   - No sticky anywhere
+   - No duplicate body rules
 */
 
+/* ================= VARIABLES ================= */
 :root{
   --bg:#ffffff;
   --text:#122026;
@@ -17,256 +17,215 @@
   --shadow: 0 18px 50px rgba(16,24,40,.08);
   --radius: 20px;
   --container: 1120px;
-  --header-h: 76px; /* single place to control header height */
+  --header-h: 76px;
 }
 
+/* ================= RESET ================= */
 *{box-sizing:border-box}
-html,body{height:100%}
-
-/* Anchor jump offset for #about/#gallery/#visit etc */
+html,body{margin:0;padding:0}
 html{
   scroll-padding-top: var(--header-h);
 }
 
-/* Base */
+/* ================= BODY ================= */
 body{
-  margin:0;
-  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Apple Color Emoji","Segoe UI Emoji";
+  min-height:100vh;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
   color:var(--text);
   background:
     radial-gradient(900px 500px at 15% 10%, rgba(255,77,157,.16), transparent 55%),
     radial-gradient(900px 500px at 85% 15%, rgba(34,193,255,.16), transparent 55%),
     var(--bg);
   line-height:1.5;
-
-  /* space for fixed header */
   padding-top: var(--header-h);
 }
 
-a{color:inherit; text-decoration:none}
+a{color:inherit;text-decoration:none}
 
 .container{
   max-width:var(--container);
   margin:0 auto;
-  padding:0 24px; /* side spacing */
+  padding:0 24px;
 }
 
-/* ===== HEADER (ABSOLUTELY FIXED) =====
-   If something on the page uses transform/filter on ancestors, fixed elements can behave oddly.
-   The following makes the header extremely resilient.
-*/
+/* ================= HEADER / NAV ================= */
 .site-header{
-  position: fixed !important;
-  top: 0 !important;
-  left: 0 !important;
-  right: 0 !important;
-  width: 100% !important;
-
-  height: var(--header-h);
-  display:flex;
-  align-items:center;
-
-  z-index: 2147483647 !important; /* maximum practical z-index */
-  background: rgba(255,255,255,.96) !important;
-  border-bottom: 1px solid var(--stroke) !important;
-
-  /* protect from weird stacking contexts */
-  transform: none !important;
-  filter: none !important;
-  perspective: none !important;
-  isolation: isolate; /* creates its own stacking context */
+  position:fixed;
+  top:0;
+  left:0;
+  right:0;
+  height:var(--header-h);
+  z-index:999999;
+  background:rgba(255,255,255,.96);
+  border-bottom:1px solid var(--stroke);
+  backdrop-filter: blur(10px);
 }
 
-/* Ensure header content aligns and doesn't collapse */
 .header-inner{
-  width:100%;
+  height:100%;
   display:flex;
   align-items:center;
   justify-content:space-between;
-  padding: 14px 0;
 }
 
-.brand{display:flex; gap:12px; align-items:center}
-.logo{width:44px; height:44px; object-fit:contain}
-.brand-text strong{display:block; letter-spacing:.2px}
-.brand-text small{display:block; color:var(--muted); margin-top:2px}
+.brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+.logo{
+  width:44px;
+  height:44px;
+  object-fit:contain;
+}
+.brand-text strong{display:block}
+.brand-text small{color:var(--muted)}
 
-.nav{display:flex; gap:18px; align-items:center}
-.nav a{color:var(--muted); font-weight:600; font-size:14px}
+.nav{
+  display:flex;
+  align-items:center;
+  gap:18px;
+}
+.nav a{
+  font-size:14px;
+  font-weight:600;
+  color:var(--muted);
+}
 .nav a:hover{color:var(--text)}
 
-/* Buttons */
+/* ================= BUTTONS ================= */
 .btn{
-  display:inline-flex; align-items:center; justify-content:center;
   padding:10px 14px;
   border-radius:999px;
-  border:1px solid rgba(0,0,0,0);
-  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
   color:#fff;
   font-weight:700;
-  box-shadow: 0 10px 30px rgba(255,77,157,.18);
-  cursor:pointer;
-  transition: transform .15s ease;
+  box-shadow:0 10px 30px rgba(255,77,157,.18);
 }
-.btn:hover{transform: translateY(-1px)}
-.btn:active{transform: translateY(0)}
 .btn.ghost{
-  background: transparent;
+  background:transparent;
   border:1px solid var(--stroke);
   color:var(--text);
   box-shadow:none;
 }
 
-/* Hero */
-.hero{width:100%; padding:64px 0 34px}
+/* ================= HERO ================= */
+.hero{padding:64px 0 34px}
 .hero-inner{
   display:grid;
-  grid-template-columns: 1.25fr .75fr;
+  grid-template-columns:1.25fr .75fr;
   gap:24px;
-  align-items:stretch;
 }
-.hero-copy h1{font-size:44px; line-height:1.1; margin:0 0 12px}
-.hero-copy p{margin:0 0 18px; color:var(--muted); max-width:52ch}
-.hero-actions{display:flex; gap:12px; flex-wrap:wrap}
-.hero-badges{display:flex; gap:10px; flex-wrap:wrap; margin-top:16px}
+.hero-copy h1{
+  font-size:44px;
+  margin:0 0 12px;
+}
+.hero-copy p{
+  color:var(--muted);
+  max-width:52ch;
+}
+.hero-actions{display:flex;gap:12px}
+.hero-badges{
+  margin-top:16px;
+  display:flex;
+  gap:10px;
+}
 .hero-badges span{
   padding:8px 12px;
   border-radius:999px;
-  background: rgba(255,255,255,.72);
+  background:#fff;
   border:1px solid var(--stroke);
-  color:var(--muted);
-  font-weight:600;
   font-size:13px;
 }
 
-/* Hero card */
+/* ================= HERO CARD ================= */
 .hero-card{
-  background: rgba(255,255,255,.78);
+  background:#fff;
+  border-radius:var(--radius);
   border:1px solid var(--stroke);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
+  box-shadow:var(--shadow);
   overflow:hidden;
-  display:flex;
-  flex-direction:column;
 }
-.hero-card-top{padding:18px}
-.hero-card-top h3{margin:0 0 6px}
-.hero-card-top p{margin:0; color:var(--muted)}
-.hero-card-bottom{padding:18px; border-top:1px solid var(--stroke)}
+.hero-card-top,
+.hero-card-bottom{padding:18px}
 
-.mini-grid{
-  display:grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap:10px;
+/* ================= SECTIONS ================= */
+.section{padding:64px 0}
+.section.alt{background:var(--alt)}
+
+.section-head h2{
+  font-size:30px;
+  margin:0 0 6px;
 }
-.mini{
-  width:100%;
-  height:56px;
-  border-radius:14px;
-  border:1px solid var(--stroke);
-  background: rgba(16,24,40,.03);
-  object-fit:cover;
-  display:block;
+.section-head p{
+  color:var(--muted);
+  max-width:70ch;
 }
 
-/* Sections */
-.section{width:100%; padding:64px 0}
-.section.alt{background: var(--alt)}
-.section-head{margin-bottom:22px}
-.section-head h2{margin:0 0 6px; font-size:30px}
-.section-head p{margin:0; color:var(--muted); max-width:70ch}
-
-/* About cards */
+/* ================= ABOUT ================= */
 .cards{
   display:grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns:repeat(3,1fr);
   gap:14px;
 }
 .card{
-  background: rgba(255,255,255,.82);
+  background:#fff;
+  border-radius:var(--radius);
   border:1px solid var(--stroke);
-  border-radius: var(--radius);
   padding:18px;
-  box-shadow: 0 10px 30px rgba(16,24,40,.05);
+  box-shadow:0 10px 30px rgba(16,24,40,.05);
 }
-.card h3{margin:0 0 6px}
-.card p{margin:0; color:var(--muted)}
 
-/* Video */
+/* ================= VIDEO ================= */
 .media{
-  border-radius: var(--radius);
+  aspect-ratio:16/9;
+  border-radius:var(--radius);
   overflow:hidden;
   border:1px solid var(--stroke);
-  box-shadow: var(--shadow);
   background:#fff;
-  aspect-ratio: 16 / 9;
 }
-.media iframe{width:100%; height:100%; display:block; border:0}
+.media iframe{width:100%;height:100%;border:0}
 
-/* Map + Contact */
+/* ================= MAP / CONTACT ================= */
 .split{
   display:grid;
-  grid-template-columns: 1.2fr .8fr;
+  grid-template-columns:1.2fr .8fr;
   gap:14px;
-  align-items:stretch;
 }
 .map{
-  border-radius: var(--radius);
+  min-height:420px;
+  border-radius:var(--radius);
   overflow:hidden;
   border:1px solid var(--stroke);
-  box-shadow: var(--shadow);
-  background:#fff;
-  min-height: 420px;
 }
-.map iframe{width:100%; height:100%; border:0; display:block}
+.map iframe{width:100%;height:100%;border:0}
 
 .contact-card{
-  background: rgba(255,255,255,.86);
+  background:#fff;
+  border-radius:var(--radius);
   border:1px solid var(--stroke);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
   padding:18px;
 }
-.form{display:grid; gap:12px; margin-top:14px}
-label{display:grid; gap:6px; font-weight:700; font-size:13px}
-input,textarea{
-  border-radius:14px;
-  border:1px solid var(--stroke);
-  padding:12px 12px;
-  font:inherit;
-  background: rgba(16,24,40,.02);
-}
-input:focus,textarea:focus{
-  outline:2px solid rgba(34,193,255,.25);
-  border-color: rgba(34,193,255,.35);
-}
-.muted{color:var(--muted)}
 
-/* Footer */
+/* ================= FOOTER ================= */
 .footer{
-  width:100%;
   padding:28px 0;
   border-top:1px solid var(--stroke);
-  background: rgba(255,255,255,.68);
+  background:rgba(255,255,255,.7);
 }
 .footer-inner{
-  display:flex; align-items:center; justify-content:space-between;
-  gap:16px;
+  display:flex;
+  justify-content:space-between;
 }
-.footer-links{display:flex; gap:14px}
-.footer-links a{color:var(--muted); font-weight:700; font-size:14px}
-.footer-links a:hover{color:var(--text)}
 
-/* Responsive */
-@media (max-width: 980px){
-  .hero-inner{grid-template-columns: 1fr}
-  .cards{grid-template-columns: 1fr}
-  .split{grid-template-columns: 1fr}
+/* ================= RESPONSIVE ================= */
+@media (max-width:980px){
+  .hero-inner{grid-template-columns:1fr}
+  .cards{grid-template-columns:1fr}
+  .split{grid-template-columns:1fr}
   .nav{display:none}
 }
 
-@media (max-width: 640px){
+@media (max-width:640px){
   .hero-copy h1{font-size:36px}
-  .mini-grid{grid-template-columns: repeat(2, 1fr)}
-  .mini{height:64px}
 }
