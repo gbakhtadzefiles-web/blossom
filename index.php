@@ -151,10 +151,11 @@ $thumbs = array_slice($images, 0, 12); // 12 thumbnails (3 rows x 4 cols)
 
     <div class="split">
       <div class="map">
-        <iframe
-          src="https://www.google.com/maps?q=Tbilisi&output=embed"
-          loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"></iframe>
+<iframe
+  src="https://www.google.com/maps?q=41.7320978,44.7339606&z=17&output=embed"
+  loading="lazy"
+  referrerpolicy="no-referrer-when-downgrade"></iframe>
+
       </div>
 
       <div class="contact-card" id="contact">
