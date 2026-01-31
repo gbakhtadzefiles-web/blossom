@@ -68,7 +68,7 @@ $thumbs = array_slice($images, 0, 12); // 12 thumbnails (3 rows x 4 cols)
     <div class="about-grid">
       <article class="card about-main">
         <div class="section-head">
-          <h2>About Amaryllis</h2>
+          <h2>ჩვენს შესახებ</h2>
           <p>We create clean, modern floral compositions with bright accents and natural textures.</p>
         </div>
         <p>Your flower store description goes here...</p>
@@ -92,8 +92,8 @@ $thumbs = array_slice($images, 0, 12); // 12 thumbnails (3 rows x 4 cols)
 <section id="video" class="section">
   <div class="container">
     <div class="section-head">
-      <h2>Video</h2>
-      <p>Embed your YouTube video (replace VIDEO_ID).</p>
+      <h2>შემოქმედება</h2>
+      
     </div>
 
     <div class="media">
@@ -110,8 +110,8 @@ $thumbs = array_slice($images, 0, 12); // 12 thumbnails (3 rows x 4 cols)
 <section id="visit" class="section alt">
   <div class="container">
     <div class="section-head">
-      <h2>Map & Visit</h2>
-      <p>Show your location and make it easy to reach you.</p>
+      <h2>ლოკაცია</h2>
+      
     </div>
 
     <div class="split">
@@ -124,20 +124,20 @@ $thumbs = array_slice($images, 0, 12); // 12 thumbnails (3 rows x 4 cols)
       </div>
 
       <div class="contact-card" id="contact">
-        <h3>Contact</h3>
-        <p class="muted">Phone: <strong>577110066</strong><br/>ელ. ფოსტა<strong>info@amaryllis.com.ge</strong><br/>მისამართი: <strong>პაატა დათუაშვილის ქუჩა 3</strong></p>
-
+        <h3>დაგვიკავშირდით</h3>
+        <p class="muted">ტელეფონი: <strong>577110066</strong><br/>ელ. ფოსტა: <strong>info@amaryllis.com.ge</strong><br/>მისამართი: <strong>პ. დათუაშვილის 3</strong></p>
+ <h3>დატოვეთ შეტყობინება</h3>
         <form class="form" method="post" action="#">
           <label>
-            Name
+            სახელი
             <input type="text" name="name" required />
           </label>
           <label>
-            Phone / Email
+            ტელეფონი
             <input type="text" name="contact" required />
           </label>
           <label>
-            Message
+            შეტყობინება
             <textarea name="message" rows="4" required></textarea>
           </label>
           <button class="btn" type="submit">Send</button>
