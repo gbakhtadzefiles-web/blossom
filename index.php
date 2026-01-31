@@ -39,8 +39,8 @@ $thumbs = array_slice($images, 0, 12); // 12 thumbnails (3 rows x 4 cols)
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Amaryllis — Flower Boutique</title>
-  <link rel="icon" type="image/png" href="ahttps://blossom.ge/assets/styles.css">
-<link rel="apple-touch-icon" href="ahttps://blossom.ge/assets/styles.css">
+  <link rel="icon" type="image/png" href="https://blossom.ge/assets/logo.png">
+<link rel="apple-touch-icon" href="hhttps://blossom.ge/assets/logo.png">
   <link rel="stylesheet" href="https://blossom.ge/assets/styles.css" />
 </head>
 <body class="t1">
@@ -48,7 +48,7 @@ $thumbs = array_slice($images, 0, 12); // 12 thumbnails (3 rows x 4 cols)
 <header class="site-header">
   <div class="container header-inner">
     <a class="brand" href="#">
-      <img src="assets/Logo.png" alt="Amaryllis Logo" class="logo" />
+      <img src="https://blossom.ge/assets/logo.png" alt="Amaryllis Logo" class="logo" />
       <span class="brand-text">
         <strong>Amaryllis</strong>
         <small>Flower Boutique</small>
@@ -68,10 +68,10 @@ $thumbs = array_slice($images, 0, 12); // 12 thumbnails (3 rows x 4 cols)
     <div class="about-grid">
       <article class="card about-main">
         <div class="section-head">
-          <h2>ჩვენს შესახებ</h2>
-          <p>We create clean, modern floral compositions with bright accents and natural textures.</p>
+          <h3>ჩვენს შესახებ</h3>
+          <p>უნაკლო ხარისხი: ჩვენ ვიყენებთ მხოლოდ საუკეთესო, სათუთად შერჩეულ და ყოველთვის ახალ ყვავილებს, რომლებიც დიდხანს ინარჩუნებენ პირვანდელ სილამაზესა და არომატს.</p>
         </div>
-        <p>Your flower store description goes here...</p>
+      
       </article>
 
       <div class="about-social">
