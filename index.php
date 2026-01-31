@@ -140,8 +140,8 @@ $thumbs = array_slice($images, 0, 12); // 12 thumbnails (3 rows x 4 cols)
             შეტყობინება
             <textarea name="message" rows="4" required></textarea>
           </label>
-          <button class="btn" type="submit">Send</button>
-          <small class="muted">Hook this form to email/CRM later if needed.</small>
+          <button class="btn" type="submit">გაგზავნა</button>
+         
         </form>
       </div>
     </div>
