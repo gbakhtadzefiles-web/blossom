@@ -58,8 +58,7 @@ $thumbs = array_slice($images, 0, 12); // 12 thumbnails (3 rows x 4 cols)
     <nav class="nav">
       <a href="#about">ჩვენს შესახებ</a>
       <a href="#gallery">გალერეა</a>
-      <a href="#video">ვიდეო</a>
-      <a href="#visit">ლოკაცია</a>
+        <a href="#video">ვიდეო</a>
       <a class="btn" href="#contact">კონტაქტი</a>
     </nav>
   </div>
@@ -87,29 +86,7 @@ $thumbs = array_slice($images, 0, 12); // 12 thumbnails (3 rows x 4 cols)
   </div>
 </section>
 
-<section id="about" class="section">
-  <div class="container">
-    <div class="section-head">
-      <h2>About</h2>
-      <p>We create clean, modern floral compositions with bright accents and natural textures.</p>
-    </div>
 
-    <div class="cards">
-      <article class="card">
-        <h3>Style</h3>
-        <p>Minimalistic bouquets with space, balance, and uplifting colors.</p>
-      </article>
-      <article class="card">
-        <h3>Quality</h3>
-        <p>Fresh flowers, careful storage, and consistent craftsmanship.</p>
-      </article>
-      <article class="card">
-        <h3>Service</h3>
-        <p>Custom requests, gift notes, and fast delivery.</p>
-      </article>
-    </div>
-  </div>
-</section>
 <?php include 'gallery.php'; ?>
 
 <section id="video" class="section">
