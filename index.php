@@ -125,7 +125,7 @@ $thumbs = array_slice($images, 0, 12); // 12 thumbnails (3 rows x 4 cols)
 
       <div class="contact-card" id="contact">
         <h3>დაგვიკავშირდით</h3>
-        <p class="muted">ტელეფონი: <strong>577110066</strong><br/>ელ. ფოსტა: <strong>info@amaryllis.com.ge</strong><br/>მისამართი: <strong>პ. დათუაშვილის 3</strong></p>
+        <p class="muted">ტელეფონი: <strong>598 67 19 59</strong><br/>ელ. ფოსტა: <strong>info@amaryllis.com.ge</strong><br/>მისამართი: <strong>პ. დათუაშვილის 3</strong></p>
  <h3>დატოვეთ შეტყობინება</h3>
         <form class="form" method="post" action="#">
           <label>
