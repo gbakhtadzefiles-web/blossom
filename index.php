@@ -39,8 +39,8 @@ $thumbs = array_slice($images, 0, 12); // 12 thumbnails (3 rows x 4 cols)
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Amaryllis — Flower Boutique</title>
-  <!-- <link rel="icon" type="image/png" href="assets/logo.png"> -->
-  <!-- <link rel="apple-touch-icon" href="assets/logo.png"> -->
+  <link rel="icon" type="image/png" href="https://i.imgur.com/a5sZSlN.png">
+  <link rel="apple-touch-icon" href="https://i.imgur.com/a5sZSlN.png">
   <link rel="stylesheet" href="https://blossom.ge/assets/styles.css" />
 </head>
 <body class="t1">
@@ -48,7 +48,7 @@ $thumbs = array_slice($images, 0, 12); // 12 thumbnails (3 rows x 4 cols)
 <header class="site-header">
   <div class="container header-inner">
     <a class="brand" href="#">
-      <!-- <img src="assets/logo.png" alt="Amaryllis Logo" class="logo" /> -->
+      <img src="https://i.imgur.com/a5sZSlN.png" alt="Amaryllis Logo" class="logo" />
       <span class="brand-text">
         <strong>ამარილისი</strong>
         <small>ყვავილების მაღაზია</small>
@@ -79,9 +79,9 @@ $thumbs = array_slice($images, 0, 12); // 12 thumbnails (3 rows x 4 cols)
       <div class="about-social">
         <h3>შემოგვიერთდით</h3>
         <div class="social-links">
-          <a href="#" class="btn-social">TikTok</a>
-          <a href="#" class="btn-social">Instagram</a>
-          <a href="#" class="btn-social">Facebook</a>
+          <a href="https://www.tiktok.com/@.amaryllis43?_r=1&_t=ZS-93X48j50Jrs" class="btn-social">TikTok</a>
+          <a href="https://www.instagram.com/amaryllis__flowers__shop?igsh=aWZyNGYxODdvanZp" class="btn-social">Instagram</a>
+          <a href="https://www.facebook.com/share/1Dgt5X5Jhi/" class="btn-social">Facebook</a>
         </div>
       </div>
     </div>
@@ -157,9 +157,9 @@ $thumbs = array_slice($images, 0, 12); // 12 thumbnails (3 rows x 4 cols)
       <small class="muted">© <?php echo date('Y'); ?></small>
     </div>
     <div class="footer-links">
-      <a href="#">Instagram</a>
-      <a href="#">Facebook</a>
-      <a href="#">TikTok</a>
+      <a href="https://www.instagram.com/amaryllis__flowers__shop?igsh=aWZyNGYxODdvanZp">Instagram</a>
+      <a href="https://www.facebook.com/share/1Dgt5X5Jhi/">Facebook</a>
+      <a href="https://www.tiktok.com/@.amaryllis43?_r=1&_t=ZS-93X48j50Jrs">TikTok</a>
     </div>
   </div>
 </footer>
