@@ -70,22 +70,19 @@ $thumbs = array_slice($images, 0, 12); // 12 thumbnails (3 rows x 4 cols)
       <article class="card about-main">
         <div class="section-head">
           <h2>About Amaryllis</h2>
-          <p>We create clean, modern floral compositions with bright accents and natural textures. Our team focuses on the intersection of botanical art and modern lifestyle.</p>
+          <p>We create clean, modern floral compositions with bright accents and natural textures.</p>
         </div>
-        <div class="style-details">
-          <p><strong>Our Style:</strong> Minimalistic bouquets with space, balance, and uplifting colors. Fresh flowers, careful storage, and consistent craftsmanship.</p>
-        </div>
+        <p>Your flower store description goes here...</p>
       </article>
 
-      <article class="card about-social">
+      <div class="about-social">
         <h3>Follow Us</h3>
-        <p>Stay updated with our latest floral designs.</p>
         <div class="social-links">
-          <a href="#" class="btn-social">Instagram</a>
           <a href="#" class="btn-social">TikTok</a>
+          <a href="#" class="btn-social">Instagram</a>
           <a href="#" class="btn-social">Facebook</a>
         </div>
-      </article>
+      </div>
     </div>
   </div>
 </section>
