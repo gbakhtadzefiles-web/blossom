@@ -77,7 +77,7 @@ $thumbs = array_slice($images, 0, 12); // 12 thumbnails (3 rows x 4 cols)
       </article>
 
       <div class="about-social">
-        <h3>Follow Us</h3>
+        <h2>სოციალური მეტია</h2>
         <div class="social-links">
           <a href="#" class="btn-social">TikTok</a>
           <a href="#" class="btn-social">Instagram</a>
@@ -94,7 +94,7 @@ $thumbs = array_slice($images, 0, 12); // 12 thumbnails (3 rows x 4 cols)
 <section id="video" class="section">
   <div class="container">
     <div class="section-head">
-      <h2>შემოქმედება</h2>
+      <h3>შემოქმედება</h3>
       
     </div>
 
@@ -112,7 +112,7 @@ $thumbs = array_slice($images, 0, 12); // 12 thumbnails (3 rows x 4 cols)
 <section id="visit" class="section alt">
   <div class="container">
     <div class="section-head">
-      <h2>ლოკაცია</h2>
+      <h3>ლოკაცია</h3>
       
     </div>
 
