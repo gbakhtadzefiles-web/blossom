@@ -82,6 +82,7 @@ $thumbs = array_slice($images, 0, 12); // 12 thumbnails (3 rows x 4 cols)
           <a href="https://www.tiktok.com/@.amaryllis43?_r=1&_t=ZS-93X48j50Jrs" class="btn-social">TikTok</a>
           <a href="https://www.instagram.com/amaryllis__flowers__shop?igsh=aWZyNGYxODdvanZp" class="btn-social">Instagram</a>
           <a href="https://www.facebook.com/share/1Dgt5X5Jhi/" class="btn-social">Facebook</a>
+        <a href="https://flowwow.com/en-en/shop/amaryllisf-6406/" class="btn-social">Flowwow</a>
         </div>
       </div>
     </div>
