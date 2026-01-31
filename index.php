@@ -56,11 +56,11 @@ $thumbs = array_slice($images, 0, 12); // 12 thumbnails (3 rows x 4 cols)
     </a>
 
     <nav class="nav">
-      <a href="#about">About</a>
-      <a href="#gallery">Gallery</a>
-      <a href="#video">Video</a>
-      <a href="#visit">Visit</a>
-      <a class="btn" href="#contact">Contact</a>
+      <a href="#about">ჩვენს შესახებ</a>
+      <a href="#gallery">გალერეა</a>
+      <a href="#video">ვიდეო</a>
+      <a href="#visit">ლოკაცია</a>
+      <a class="btn" href="#contact">კონტაქტი</a>
     </nav>
   </div>
 </header>
