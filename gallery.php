@@ -69,8 +69,8 @@ $total  = count($items);
 <section id="gallery" class="section alt">
   <div class="container">
     <div class="section-head">
-      <h2>Picture Gallery</h2>
-      <p>Click any photo to view larger (<?= $total ?> photos).</p>
+      <h3>ფოტო გალერეა</h3>
+      
     </div>
 
     <div class="am-gallery-grid">

@@ -77,7 +77,7 @@ $thumbs = array_slice($images, 0, 12); // 12 thumbnails (3 rows x 4 cols)
       </article>
 
       <div class="about-social">
-        <h2>სოციალური მეტია</h2>
+        <h3>შემოგვიერთდით</h3>
         <div class="social-links">
           <a href="#" class="btn-social">TikTok</a>
           <a href="#" class="btn-social">Instagram</a>
