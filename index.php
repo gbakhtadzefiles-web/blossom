@@ -39,9 +39,9 @@ $thumbs = array_slice($images, 0, 12); // 12 thumbnails (3 rows x 4 cols)
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Amaryllis — Flower Boutique</title>
-  <link rel="icon" type="image/png" href="assets/Logo.png">
-<link rel="apple-touch-icon" href="assets/Logo.png">
-  <link rel="stylesheet" href="assets/styles.css" />
+  <link rel="icon" type="image/png" href="ahttps://blossom.ge/assets/styles.css">
+<link rel="apple-touch-icon" href="ahttps://blossom.ge/assets/styles.css">
+  <link rel="stylesheet" href="https://blossom.ge/assets/styles.css" />
 </head>
 <body class="t1">
 
