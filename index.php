@@ -39,8 +39,8 @@ $thumbs = array_slice($images, 0, 12); // 12 thumbnails (3 rows x 4 cols)
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Amaryllis — Flower Boutique</title>
-  <link rel="icon" type="image/png" href="https://blossom.ge/assets/logo.png">
-  <link rel="apple-touch-icon" href="https://blossom.ge/assets/logo.png">
+  <link rel="icon" type="image/png" href="assets/logo.png">
+  <link rel="apple-touch-icon" href="assets/logo.png">
   <link rel="stylesheet" href="https://blossom.ge/assets/styles.css" />
 </head>
 <body class="t1">
@@ -48,7 +48,7 @@ $thumbs = array_slice($images, 0, 12); // 12 thumbnails (3 rows x 4 cols)
 <header class="site-header">
   <div class="container header-inner">
     <a class="brand" href="#">
-      <img src="https://blossom.ge/assets/logo.png" alt="Amaryllis Logo" class="logo" />
+      <img src="assets/logo.png" alt="Amaryllis Logo" class="logo" />
       <span class="brand-text">
         <strong>Amaryllis</strong>
         <small>Flower Boutique</small>
