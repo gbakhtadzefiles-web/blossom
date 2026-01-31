@@ -64,39 +64,28 @@ $thumbs = array_slice($images, 0, 12); // 12 thumbnails (3 rows x 4 cols)
     </nav>
   </div>
 </header>
-
-<section class="hero">
-  <div class="container hero-inner">
-    <div class="hero-copy">
-      <h1>Bright flowers. Simple elegance.</h1>
-      <p>Seasonal bouquets, curated gifts, and same-day delivery.</p>
-
-      <div class="hero-actions">
-        <a class="btn" href="#gallery">View Gallery</a>
-        <a class="btn ghost" href="#contact">Order / Ask</a>
-      </div>
-
-      <div class="hero-badges">
-        <span>Fresh daily</span>
-        <span>Minimal wrapping</span>
-        <span>Custom bouquets</span>
-      </div>
-    </div>
-
-    <div class="hero-card">
-      <div class="hero-card-top">
-        <h3>Today’s Highlight</h3>
-        <p>Ask for “Amaryllis Signature” bouquet — light, joyful, modern.</p>
-      </div>
-
-      <div class="hero-card-bottom">
-        <div class="mini-grid">
-          <?php foreach ($mini as $img): ?>
-            <img class="mini" src="<?= htmlspecialchars($img) ?>" alt="Bouquet preview" loading="lazy" decoding="async" referrerpolicy="no-referrer" />
-          <?php endforeach; ?>
+<section id="about" class="section">
+  <div class="container">
+    <div class="about-grid">
+      <article class="card about-main">
+        <div class="section-head">
+          <h2>About Amaryllis</h2>
+          <p>We create clean, modern floral compositions with bright accents and natural textures. Our team focuses on the intersection of botanical art and modern lifestyle.</p>
         </div>
-        <small class="muted">Latest previews from our gallery</small>
-      </div>
+        <div class="style-details">
+          <p><strong>Our Style:</strong> Minimalistic bouquets with space, balance, and uplifting colors. Fresh flowers, careful storage, and consistent craftsmanship.</p>
+        </div>
+      </article>
+
+      <article class="card about-social">
+        <h3>Follow Us</h3>
+        <p>Stay updated with our latest floral designs.</p>
+        <div class="social-links">
+          <a href="#" class="btn-social">Instagram</a>
+          <a href="#" class="btn-social">TikTok</a>
+          <a href="#" class="btn-social">Facebook</a>
+        </div>
+      </article>
     </div>
   </div>
 </section>
