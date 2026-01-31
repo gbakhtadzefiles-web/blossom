@@ -48,7 +48,7 @@ $thumbs = array_slice($images, 0, 12); // 12 thumbnails (3 rows x 4 cols)
 <header class="site-header">
   <div class="container header-inner">
     <a class="brand" href="#">
-      <img src="https://blossom.ge/assets/logo.png" alt="Amaryllis Logo" class="logo" />
+      <img src="assets/logo.png" alt="Amaryllis Logo" class="logo" />
       <span class="brand-text">
         <strong>Amaryllis</strong>
         <small>Flower Boutique</small>
@@ -69,7 +69,9 @@ $thumbs = array_slice($images, 0, 12); // 12 thumbnails (3 rows x 4 cols)
       <article class="card about-main">
         <div class="section-head">
           <h3>ჩვენს შესახებ</h3>
-          <p>უნაკლო ხარისხი: ჩვენ ვიყენებთ მხოლოდ საუკეთესო, სათუთად შერჩეულ და ყოველთვის ახალ ყვავილებს, რომლებიც დიდხანს ინარჩუნებენ პირვანდელ სილამაზესა და არომატს.</p>
+          <p>ჩვენ ვიყენებთ მხოლოდ საუკეთესო, სათუთად შერჩეულ და ყოველთვის ახალ ყვავილებს, რომლებიც დიდხანს ინარჩუნებენ პირვანდელ სილამაზესა და არომატს.</p>
+          <p>ჩვენი ფლორისტები არ მიჰყვებიან შაბლონებს. ყოველი თაიგული და კომპოზიცია ექსკლუზიური ნამუშევარია, შექმნილი ინდივიდუალური ხედვითა და არტისტული მიდგომით.</p>
+        </div>
         </div>
       
       </article>
